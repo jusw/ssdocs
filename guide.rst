@@ -1,5 +1,5 @@
-SpreadServer User Guide
-=======================
+SpreadServe User Guide
+======================
 
 **Starting and stopping SpreadServe**
 

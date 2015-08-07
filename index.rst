@@ -13,6 +13,7 @@ Contents:
    
    install
    guide
+   spec
 
 
 Indices and tables
