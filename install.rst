@@ -4,7 +4,7 @@ The SpreadServe Installer
 SpreadServe is packaged as an NSIS installer. The install process is designed to make both installation and
 repackaging simple and modular, and to minimise system wide host impact.
 
-.. image:: ss_install.jpg 
+.. image:: img/ss_install.jpg 
     :alt: Installer
 
 **Installing SpreadServe for the first time**

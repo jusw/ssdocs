@@ -24,7 +24,7 @@ JSON format, and specify which processes SpreadServe should start when launched;
 
 When SpreadServe is running, you can point your browser at the SpreadServe RealTimeWebServer and login.
 
-.. image:: ss_login.jpg 
+.. image:: img/ss_login.jpg 
     :alt: Logging in to SpreadServe
     
 Note the port number in the URL: 8888. So if SpreadServe is running on a Windows Server with the hostname sshost, 
@@ -37,7 +37,7 @@ starting Windows itself.
 
 When you've logged in you should see a page like this in your browser...
 
-.. image:: ss_dash.jpg 
+.. image:: img/ss_dash.jpg 
     :alt: SpreadServe dashboard
     
 This is the dashboard page. It's used for starting and stopping SpreadServe processes, examining their log files and
@@ -66,18 +66,18 @@ processes that includes dead or not yet started processes.
 If you use the SpreadServeEngine Load button to load the Black Scholes.xls spreadsheet, then click on Live Sheets,
 you shoud see something like this...
 
-.. image:: ss_live1.jpg 
+.. image:: img/ss_live1.jpg 
     :alt: One live sheet
 
 And if you return to the dashboard page and launch a new SpreadServeEngine instance with the Run button, 
 and then use the Load button for that new instance to load up InterestRateDerivatives.xls, then this is what you should see...
 
-.. image:: ss_live2.jpg 
+.. image:: img/ss_live2.jpg 
     
 Naturally, all the live sheets within a live spreadsheet are clickable links that will take you through to a view of that sheet.
 Try clicking on Black-Scholes Model and you should see this...
 
-.. image:: ss_live3.jpg 
+.. image:: img/ss_live3.jpg 
 
 This is just what you'd see in Microsoft Excel if you loaded the same SpreadSheet. Try it and see for yourself.
 You can find the spreadsheet in the SpreadServe directory tree at py/http/repo/BlackScholes.xls. Now in Excel all
@@ -91,7 +91,7 @@ sheet, and they'd all see the same data, and the same recalculation.
 **User Interface: Repository**
 Clicking the Repository link to the left will show you a list of the spreadsheets available for loading with the Load button on the dashboard page...
 
-.. image:: ss_repo.jpg 
+.. image:: img/ss_repo.jpg 
     :alt: SpreadServe repository
 
 The repository page also allows you to upload spreadsheets from your local file system. Hit the browse button to select a spreadsheet.
@@ -107,10 +107,10 @@ Next time you hit the load button you're spreadsheet listed.
 * Processes run with elevated permissions access the registry differently, which can prevent `Excel-DNA <https://github.com/Excel-DNA>`_
   based addins from working. Elevated permissions are required to run binaries installed under
   ``c:\Program Files``. However, processes with elevated permissions can't access per user settings
-  under HKEY_CURRENT_USER, instead they'll go to HKEY_LOCAL_MACHINE. This is by design to prevent
-  exploits. Excel-DNA puts its auto registry entries under HKEY_CURRENT_USER for RTD registration.
+  under ``HKEY_CURRENT_USER``, instead they'll go to ``HKEY_LOCAL_MACHINE``. This is by design to prevent
+  exploits. Excel-DNA puts its auto registry entries under ``HKEY_CURRENT_USER`` for RTD registration.
   See `ExcelRtd.cs <https://github.com/Excel-DNA/ExcelDna/blob/master/Source/ExcelDna.Integration/ExcelRtd.cs>`_.
-  Consequently, to use addins with Excel-DNA based RTD servers, we must install SpreadServe outside c:\Program Files,
+  Consequently, to use addins with Excel-DNA based RTD servers, we must install SpreadServe outside ``c:\Program Files``,
   so we can run it without elevated privileges.
   http://stackoverflow.com/questions/5649544/component-creation-fails-under-uac-admin-works-without-uac-elevation
   https://msdn.microsoft.com/en-us/library/bb756926.aspx
@@ -121,7 +121,7 @@ Next time you hit the load button you're spreadsheet listed.
   A complete recalculation of all nodes on the graph, irrespective of changed inputs, is necessary to force the
   changes through. But if a sheet is indirectly circular because it's doing quandl queries and notifying results via RTD,
   a complete recalc on every RTD update causes never ending computation. We have a configuration setting in sseng.ini to
-  control what kind of recalculation is done on an RTD update: RTD_FULL_CALC. You should only set this when there are no
+  control what kind of recalculation is done on an RTD update: ``RTD_FULL_CALC``. You should only set this when there are no
   circular dependencies, hidden or otherwise.
 
 **Connectors: getting data in and out of SpreadServeEngines**
@@ -167,13 +167,13 @@ There are several configuration dependencies here, and this will only work out o
 We'll detail the config below. Assuming your config is correct you'll see operations tracked in the database. Try loading the InterestRateDerivates.xls
 spreadsheet, navigate to the TermStructures sheet, and change the Rate cell from 4.4% to 5.4%.
 
-.. image:: ss_live4.jpg 
+.. image:: img/ss_live4.jpg 
     :alt: InterestRateDeivatives.xls!TermStructures
     
 Obviously the dependent sheets and cells will recalc. Look at the NPV on the Swaps sheet for instance. You'll also find that the SSOPS table in
 the database has recorded the change to the sheet too. At SpreadServe we like the HeidiSQL DB clients. Here's how it looks to us...
 
-.. image:: ss_db1.jpg 
+.. image:: img/ss_db1.jpg 
     :alt: DB change tracking
  
 Notice how that last row in the SSOPS table records the timestamp, the spreadsheet, the operation (edit), the user ID, and the cell that was changed
