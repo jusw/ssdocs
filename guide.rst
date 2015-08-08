@@ -189,7 +189,15 @@ not using MySQL, you'll need to add the relevant JDBC driver to the lib director
 
 To add an XLL to your SpreadServe deployment you need to edit cfg\xll.txt. In the standard install it looks like this::
 
-    file:///c:/SpreadServe/ss0.2.0/bin/xlcall32.dll
-    file:///c:/SpreadServe/ss0.2.0/bin/quantlibxl-vc110-mt-s-1_4_0.xll
+    file:///c:/SpreadServe/ss0.2.0/bin/xlcall32.dll;cdecl;refreshdata
+    file:///c:/SpreadServe/ss0.2.0/bin/quantlibxl-vc110-mt-s-1_4_0.xll;cdecl;refreshdata
+    file:///c:/SpreadServe/ss0.2.0/bin/SSAddin.xll;stdcall;refreshdata
 
-To add your XLL, copy it to the bin directory, then add another line to xll.txt modelled on the the lines that reference xlcall32.dll and the QuantLib XLL.
+To add your XLL, copy it to the ``ss0.2.0/bin`` directory, then add another line to xll.txt modelled on the the lines that reference xlcall32.dll
+and the QuantLib XLL. Note that each line has three parts separated by semicolons. Firstly the path to the XLL, then the calling convention, and 
+finally an RTD switch. The calling convention should be ``cdecl`` or ``stdcall``; XLLs implemented in C++ will probably be ``cdecl``, and those in
+C# ``stdcall``. However this is not a hard and fast rule, and if you're not sure which calling convention your XLL uses then examine it with
+dumpbin or depends and look at the exported symbols. `This article <http://blogs.msdn.com/b/oldnewthing/archive/2004/01/08/48616.aspx>`_ by the
+immortal Raymond Chen will enable you to determine whether you're seeing symbols using stdcall or cdecl. The third part of the line will be
+`refreshdata` or `norefreshdata`. It should always be set to the former unless you're using an XLL which generates RTD updates and you want to
+disable them.

@@ -9,9 +9,10 @@ SpreadServe is a Windows Server hosted server product with a web UI.
 * User interface: web UI built with `Bootstrap <http://getbootstrap.com/>`_ 2.0.4 and `jQuery <http://jquery.com/>`_ 1.7.1 enabling job control and
   spreadsheet interaction from a browser.
 * APIs: Python. C++ and Java APIs exist in prototype form. The Python API supports integrations and unit testing of spreadsheets.
-* Core implementation: SpreadServe's native implementation language is C++.
+* Core implementation: SpreadServe's native implementation language is C++ built as 32 bit binaries with Microsoft Visual C++ 9.
 * VBA: SpreadServe supports VBA macros.
 * XLL: SpreadServe supports XLL addins, and has been tested with the `QuantLib <http://quantlib.org/index.shtml>`_ 1.4.0 addin.
+* RTD: SpreadServe supports RTD updates.
 * Excel file formats: Excel 97-2003 .xls is currently supported. The later Excel .xlsx format is in development.
 * RDBMS: the dblog component enables logging of all SpreadSheet operations to an RDB.
   SpreadServe has been tested with `MySQL <http://www.mysql.com/>`_ 5.6, and should work with any RDB that has a JDBC driver.
