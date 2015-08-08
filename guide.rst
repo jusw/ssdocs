@@ -80,7 +80,7 @@ Try clicking on Black-Scholes Model and you should see this...
 .. image:: img/ss_live3.jpg 
 
 This is just what you'd see in Microsoft Excel if you loaded the same SpreadSheet. Try it and see for yourself.
-You can find the spreadsheet in the SpreadServe directory tree at py/http/repo/BlackScholes.xls. Now in Excel all
+You can find the spreadsheet in the SpreadServe directory tree at ``py/http/repo/BlackScholes.xls``. Now in Excel all
 the cells are editable, both those with formulae, and those holding raw data. You can change the cells in and see
 the spreadsheet recalc. In the SpreadServe GUI you can change the raw data cells, but you can't edit the formula cells. 
 In the SpreadServe GUI try clicking on any of the cells that have the dot dot dot underlining. You'll see a pop up that
@@ -187,13 +187,13 @@ not using MySQL, you'll need to add the relevant JDBC driver to the lib director
 
 **XLL configuration**
 
-To add an XLL to your SpreadServe deployment you need to edit cfg\xll.txt. In the standard install it looks like this::
+To add an XLL to your SpreadServe deployment you need to edit ``cfg\xll.txt``. In the standard install it looks like this::
 
     file:///c:/SpreadServe/ss0.2.0/bin/xlcall32.dll;cdecl;refreshdata
     file:///c:/SpreadServe/ss0.2.0/bin/quantlibxl-vc110-mt-s-1_4_0.xll;cdecl;refreshdata
     file:///c:/SpreadServe/ss0.2.0/bin/SSAddin.xll;stdcall;refreshdata
 
-To add your XLL, copy it to the ``ss0.2.0/bin`` directory, then add another line to xll.txt modelled on the the lines that reference xlcall32.dll
+To add your XLL, copy it to the ``ss0.2.0\bin`` directory, then add another line to xll.txt modelled on the the lines that reference xlcall32.dll
 and the QuantLib XLL. Note that each line has three parts separated by semicolons. Firstly the path to the XLL, then the calling convention, and 
 finally an RTD switch. The calling convention should be ``cdecl`` or ``stdcall``; XLLs implemented in C++ will probably be ``cdecl``, and those in
 C# ``stdcall``. However this is not a hard and fast rule, and if you're not sure which calling convention your XLL uses then examine it with
