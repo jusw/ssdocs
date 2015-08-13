@@ -3,7 +3,7 @@ SpreadServe Configuration
 
 **SpreadServeEngine configuration**
 
-``sseng.ini``: this config file lives in %SSROOT%\bin as it needs to be in the same directory as sseng.ini.
+``sseng.ini``: this config file lives in ``%SSROOT%\bin`` as it needs to be in the same directory as sseng.exe.
 sseng.exe uses it to determine the location of various resources including dynamically loaded DLLs and
 the xll.txt file that specifies the XLLs to be loaded. Most of the settings are purely internal; two may be
 of interest to users.
@@ -14,7 +14,7 @@ of interest to users.
 
 **RealTimeWebServer configuration**
 
-The RealTimeWebServer implementation is all in one Python module: %SSROOT%\py\http\rtwebsvr.py, which has
+The RealTimeWebServer implementation is all in one Python module: ``%SSROOT%\py\http\rtwebsvr.py``, which has
 several global variables you can change to configure its behaviour. Look for the section near the top
 with the Config comment. If you want to change the port that RealTimeWebServer listens on then change
 this line::
@@ -40,7 +40,7 @@ Below the port config line are several variables...
     
 * ``ssroot``: defaults to the value of the ``SSROOT`` environment variable. It is unlikely
   you'll need to change this.
-* ``DefaultRepoDir``: path for the repository RealTimeWebServer serves as ``/repository.html`'. Uploaded
+* ``DefaultRepoDir``: path for the repository RealTimeWebServer serves as ``/repository.html``. Uploaded
   spreadsheets are saved here. When you click the ``Load`` button on the Dashboard page you're offered
   a list of the repository contents to load.
 * ``AideName``: process name used for rtwebsvr.py in the dashboard.
@@ -54,7 +54,7 @@ Below the port config line are several variables...
 All SpreadServe processes, whether they are RealTimeWebServer, SpreadServeEngine, Dora, Pan, SocketServer 
 or DBLogServer take a common set of command line paramters. Some have custom parameters that tailor a specific
 part of their behaviour. You'll see the parameters used in the shell scripts in ``%SSROOT%\sh`` and the JSON
-launch files in ``%SSROOT%\cfg`. Command line options are always presented with a leading hyphen and a following
+launch files in ``%SSROOT%\cfg``. Command line options are always presented with a leading hyphen and a following
 value eg ``-ENV SIT -NAME DBLogServer``.
 
 * ``ENV``: Mandatory. Environment that this SpreadServe process belongs to. Several environments can co-exist on the
@@ -92,4 +92,4 @@ See the User Guide for examples of their use.
 
 **Log files**
 
-SpreadServe log files appear in the `%TEMP%` directory.
+SpreadServe log files appear in the ``%TEMP%`` directory.
