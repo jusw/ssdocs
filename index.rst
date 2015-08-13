@@ -13,6 +13,7 @@ Contents:
    
    install
    guide
+   config
    spec
 
 
