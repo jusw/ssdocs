@@ -93,3 +93,18 @@ See the User Guide for examples of their use.
 **Log files**
 
 SpreadServe log files appear in the ``%TEMP%`` directory.
+
+**Profiles**
+
+Profiles are JSON config files that determine which SpreadServe processes are launched at startup time. A launch command
+for SpreadServe takes the form ``launch <environment> <profile>``. for instance ``launch SIT baseweb``. Several ready
+made profiles are supplied in the ``%SSROOT%\cfg`` directory. They are...
+
+* ``pandora``: a minimal profile that only starts ssdora.exe, the ProcessRegistry and sspan.exe, the EventBus. Useful for
+  developers who want to control hte launch of other processes, perhaps because they're debugging.
+* ``base``: launches three processes: ProcessRegistry, EventBus and sseng.exe, the SpreadServeEngine itself. 
+* ``baseweb``: launches the same three processes as ``base``, but with the addition of the RealTimeWebServer.
+* ``demo``: same as ``baseweb``, but adds BlackScholesMockMarketData to pump fake market data into the BlackScholes.xls
+  example sheet.
+* ``blockweb``: same as ``baseweb``, with the addition of the BlockServer, which will listen for calc requests from
+  the Blockspring SpreadServe Block.
