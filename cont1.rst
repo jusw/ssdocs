@@ -1,5 +1,5 @@
-SpreadServe Containters I
-=========================
+SpreadServe Containers I
+========================
 
 **Introduction and cautionary note**
 
