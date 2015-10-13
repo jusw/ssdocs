@@ -11,13 +11,13 @@ launch of SpreadServe containers on spreadserve01.cloudapp.net. There are still 
 issues to resolve and they will be addressed in a later note. The following Microsoft resources
 were used as source material for this work.
 
-* Quick start: https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/manage_docker
-* Work in progress: https://msdn.microsoft.com/virtualization/windowscontainers/about/work_in_progress#DockermanagementDockercommandsthatdontworkwithWindowsServerContainers
-* Forums: https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers&sort=lastpostdesc&brandIgnore=true&page=7
+* `Quick start`: https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/manage_docker
+* `Work in progress`: https://msdn.microsoft.com/virtualization/windowscontainers/about/work_in_progress#DockermanagementDockercommandsthatdontworkwithWindowsServerContainers
+* `Forums`: https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers&sort=lastpostdesc&brandIgnore=true&page=7
 
 **Stuff that didn't work**
 
-I ran into lots of issues when I tried to apply the recipe outlined in Quick start to SpreadServe.
+I ran into lots of issues when I tried to apply the recipe outlined in `Quick start` to SpreadServe.
 First up was the simple fact that, by design, you can't run a GUI in PowerShell. MS provide a
 handy recipe in the Work in progress page for RDPing into a container, which does allow
 you to run a desktop. It all worked fine for me until the container desktop turned up in
@@ -120,17 +120,17 @@ There were three key points to getting SpreadServe going in Windows Containers..
 The two step image building process is covered in detail above. I'll say a little more
 about the other two points here. Firstly the launch script. I mentioned above that
 I had to strip out the installer script code that created Registry entries for the 
-two environment variables that SpreadServe needs: SSROOT and SSROOTX. To enable single
+two environment variables that SpreadServe needs: ``SSROOT`` and ``SSROOTX``. To enable single
 line launch from docker I created a cmd script - ``dbaseweb.cmd`` - that sets the
 environment variables and launches SpreadServe. This enables me to launch SpreadServe
-instances like so...
+instances like so::
 
     docker run -p 80:80 ss031c c:\spreadserve\ss0.3.1\sh\dbaseweb.cmd
     docker run -p 81:80 ss031c c:\spreadserve\ss0.3.1\sh\dbaseweb.cmd
     
 To enable those launch lines to work the container host needs an Azure Endpoint defined 
 for port 80, port 81 and any external port that needs mapping to a container. There
-also needs to be a firewall rule opening the port like so...
+also needs to be a firewall rule opening the port like so::
 
     New-NetFirewallRule -Name "TCP81" -DisplayName "HTTP on TCP/81" -Protocol tcp -LocalPort 81
     
