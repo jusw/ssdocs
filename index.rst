@@ -15,6 +15,7 @@ Contents:
    guide
    config
    spec
+   cont1
 
 
 Indices and tables
