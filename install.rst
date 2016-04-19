@@ -10,7 +10,7 @@ repackaging simple and modular, and to minimise system wide host impact.
 **Installing SpreadServe for the first time**
 
 * Download the installer from our download page to your target Windows host.
-* Launch the ss_install_0.2.0.exe installer by double clicking, or running it at the command line.
+* Launch the ss_install_0.3.1.exe installer by double clicking, or running it at the command line.
 * Check the license terms and click "I Agree".
 * Choose your install options
 
@@ -24,26 +24,26 @@ repackaging simple and modular, and to minimise system wide host impact.
     perhaps as user variables rather than system wide.
 
 * Click Close when the Installer finishes.
-* Open a new command shell, cd to ``c:\SpreadServe\ss0.2.0\sh``
-* ``launch SIT demoweb``
+* Open a new command shell, cd to ``c:\SpreadServe\ss0.3.1\sh``
+* ``launch SIT baseweb``
 * Point your browser at http://localhost:8888 to see the web UI home page.
   You may need to enter your Windows user ID and password if you're not authenticated.
 
 **Uninstalling SpreadServe**
 
-* Delete the ``c:\SpreadServe\ss0.2.0`` directory tree
+* Delete the ``c:\SpreadServe\ss0.3.1`` directory tree
 * Go to Control Panel/System/Advanced System Settings/Environment Variables and delete the SSROOT and SSROOTX variables from System variables.
 * That's it! SpreadServe does not touch the Windows Registry.
 
 **Directories and environment variables**
 
-By default SpreadServe installs in ``c:\SpreadServe\ss0.2.0``. You can change this in the install process, but below we assume you've taken the default.
+By default SpreadServe installs in ``c:\SpreadServe\ss0.3.1``. You can change this in the install process, but below we assume you've taken the default.
 Where relative directories are mentioned, without the full path name, they are relative to the ``SSROOT`` environment variable which SpreadServe requires 
 to be set to the root of it's install. If you selected the 'Env vars' option in the install you won't need to set the environment variables yourself. 
 If not, you can set them in a command shell like so::
 
-    set SSROOT=c:\SpreadServe\ss0.2.0
-    set SSROOTX=c:/SpreadServe/ss0.2.0
+    set SSROOT=c:\SpreadServe\ss0.3.1
+    set SSROOTX=c:/SpreadServe/ss0.3.1
     
 ``SSROOTX`` is the same as ``SSROOT``, but with backslashes translated to forward slashes, and any spaces rendered as %20.
 
