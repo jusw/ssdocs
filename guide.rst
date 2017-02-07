@@ -6,12 +6,12 @@ SpreadServe User Guide
 Once you've installed SpreadServe, you can start and stop it's server processes using a couple of scripts in the sh subdirectory.
 Here's how you would start SpreadServe::
 
-    cd c:\SpreadServe\ss0.2.0\sh
+    cd c:\SpreadServe\ss0.4.2\sh
     launch SIT baseweb
 
 And here's how you can halt SpreadServe::
 
-    cd c:\SpreadServe\ss0.2.0\sh
+    cd c:\SpreadServe\ss0.4.2\sh
     halt SIT
     
 The launch script takes two parameters: environment name (SIT), and profile (baseweb). SpreadServe processes use the environment
@@ -22,16 +22,12 @@ JSON format, and specify which processes SpreadServe should start when launched;
 
 **Logging in to the web user interface**
 
-When SpreadServe is running, you can point your browser at the SpreadServe RealTimeWebServer and login.
+When SpreadServe is running, you can point your browser at the SpreadServe RealTimeWebServer and login by clicking the login button at top
+right.
+  
+Note the port number in the URL: 8090. So if SpreadServe is running on a Windows Server with the hostname sshost, 
+the URL you should enter in your browser will be http://sshost:8090  To login you should use your Google or Github identities. 
 
-.. image:: img/ss_login.jpg 
-    :alt: Logging in to SpreadServe
-    
-Note the port number in the URL: 8888. So if SpreadServe is running on a Windows Server with the hostname sshost, 
-the URL you should enter in your browser will be http://sshost:8888  To login you should enter your Windows credentials. 
-So in a corporate environment the username will be the same one you use to login to your Windows PC. Outside a corporate 
-environment, if you're running SpreadServe on a personal laptop, you'd use the same username and password as you do when
-starting Windows itself.
 
 **User Interface: dashboard**
 
