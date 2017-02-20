@@ -8,20 +8,22 @@ sseng.exe uses it to determine the location of various resources including dynam
 the xll.txt file that specifies the XLLs to be loaded. Most of the settings are purely internal; two may be
 of interest to users.
 
+
+* ``LICENSE_FILE``: path to the license key file, which can contain an offline key to stop the SpreadServeEngine
+  phoning home to spreadserve.com.
+* ``DNS_HOST_NAME``: path to a flat text file containing a hostname. If the file exists, SpreadServeEngine will
+  use this hostname when phoning home to spreadserve.com.
+* ``OWNER``: the email address associated with this SpreadServe host by spreadserve.com.
+* ``FORMAT_LOADING``: switches cell formatting on or off when loading xlsx files. No impact on xls handing.
 * ``XLL_CFG_FILE``: path to the file that specifies the XLLs to be loaded.
 * ``XLL_REG_FILE``: path to the file sseng.exe uses to dump signatures of XLL worksheet functions
   that have been successfully registered.
 
 **RealTimeWebServer configuration**
 
-The RealTimeWebServer implementation is all in one Python module: ``%SSROOT%\py\http\rtwebsvr.py``, which has
-several global variables you can change to configure its behaviour. Look for the section near the top
-with the Config comment. If you want to change the port that RealTimeWebServer listens on then change
-this line::
-
-    define( "port", default=8888, help="run on the given port", type=int)
-
-Below the port config line are several variables...
+The RealTimeWebServer implementation is mostly in one Python module: ``%SSROOT%\py\http\rtwebsvr.py``, which has
+gets configuration variables from ``%SSROOT%\cfg\webcfg.py``. If you want to switch SpreadServe to work with
+Active Directory authentication, rather than it's default social login, then edit webcfg.py
 
 * ``ADGroupMappings``: a dictionary defining the Active Directory groups that for which user
   membership will give view, edit or admin permissions.
@@ -38,16 +40,6 @@ Below the port config line are several variables...
     admin permission can start and stop SpreadServe processes via the dashboard, and upload
     new spreadsheets to the repository via the repository page.
     
-* ``ssroot``: defaults to the value of the ``SSROOT`` environment variable. It is unlikely
-  you'll need to change this.
-* ``DefaultRepoDir``: path for the repository RealTimeWebServer serves as ``/repository.html``. Uploaded
-  spreadsheets are saved here. When you click the ``Load`` button on the Dashboard page you're offered
-  a list of the repository contents to load.
-* ``AideName``: process name used for rtwebsvr.py in the dashboard.
-* ``DefaultProcessName``: process name used for rtwebsvr.py when no command line parameters are supplied in a
-  command line launch.
-* ``DefaultCmdLine``: command line parameters used when they're not supplied at the command line.
-
 
 **SpreadServe Command line parameters**
 
@@ -57,6 +49,8 @@ part of their behaviour. You'll see the parameters used in the shell scripts in 
 launch files in ``%SSROOT%\cfg``. Command line options are always presented with a leading hyphen and a following
 value eg ``-ENV SIT -NAME DBLogServer``.
 
+* ``HTTP_PORT``: supply this on the rtwebsvr.py command line to change the RealTimeWebServer port. For example
+  ``-HTTP_PORT 80`` to run on port 80.
 * ``ENV``: Mandatory. Environment that this SpreadServe process belongs to. Several environments can co-exist on the
   same host as components will only recognise and communicate with components in the same named environment.
 * ``NAME``: Optional. C++ processes will default to the exe name on the dashboard page, and Python processes will
@@ -106,5 +100,3 @@ made profiles are supplied in the ``%SSROOT%\cfg`` directory. They are...
 * ``baseweb``: launches the same three processes as ``base``, but with the addition of the RealTimeWebServer.
 * ``demo``: same as ``baseweb``, but adds BlackScholesMockMarketData to pump fake market data into the BlackScholes.xls
   example sheet.
-* ``blockweb``: same as ``baseweb``, with the addition of the BlockServer, which will listen for calc requests from
-  the Blockspring SpreadServe Block.
