@@ -14,7 +14,7 @@ of interest to users.
 * ``DNS_HOST_NAME``: path to a flat text file containing a hostname. If the file exists, SpreadServeEngine will
   use this hostname when phoning home to spreadserve.com.
 * ``OWNER``: the email address associated with this SpreadServe host by spreadserve.com.
-* ``FORMAT_LOADING``: switches cell formatting on or off when loading xlsx files. No impact on xls handing.
+* ``FORMAT_LOADING``: switches cell formatting on or off to accelerate loading xlsx files. No impact on xls handing.
 * ``XLL_CFG_FILE``: path to the file that specifies the XLLs to be loaded.
 * ``XLL_REG_FILE``: path to the file sseng.exe uses to dump signatures of XLL worksheet functions
   that have been successfully registered.
@@ -23,7 +23,9 @@ of interest to users.
 
 The RealTimeWebServer implementation is mostly in one Python module: ``%SSROOT%\py\http\rtwebsvr.py``, which has
 gets configuration variables from ``%SSROOT%\cfg\webcfg.py``. If you want to switch SpreadServe to work with
-Active Directory authentication, rather than it's default social login, then edit webcfg.py
+Active Directory authentication, rather than it's default social login, then edit webcfg.py to configure
+user group mappings. You'll also need to supply the ``AUTH`` command line parameter to RealTimeWebServer. See
+the command line parameters section below for detail on ``AUTH``.
 
 * ``ADGroupMappings``: a dictionary defining the Active Directory groups that for which user
   membership will give view, edit or admin permissions.
@@ -41,7 +43,7 @@ Active Directory authentication, rather than it's default social login, then edi
     new spreadsheets to the repository via the repository page.
     
 
-**SpreadServe Command line parameters**
+**SpreadServe command line parameters**
 
 All SpreadServe processes, whether they are RealTimeWebServer, SpreadServeEngine, Dora, Pan, SocketServer 
 or DBLogServer take a common set of command line paramters. Some have custom parameters that tailor a specific
@@ -51,6 +53,14 @@ value eg ``-ENV SIT -NAME DBLogServer``.
 
 * ``HTTP_PORT``: supply this on the rtwebsvr.py command line to change the RealTimeWebServer port. For example
   ``-HTTP_PORT 80`` to run on port 80.
+* ``AUTH``: supply this on the rtwebsvr.py command line to specify the authentication mechanism. The three
+  possible settings are
+  
+  * ``sscld``: the default. Cloud authentication with spreadserve.com. To edit permissions at http://spreadserve.com/adm/cldperms.html
+    you must ensure your email address is set in ``sseng.ini:OWNER``
+  * ``ssad``: Active Directory. Configure your user group mappings as describe above.
+  * ``ssna``: No authentication. We suggest you only use this is development and test environments, and not production!  
+
 * ``ENV``: Mandatory. Environment that this SpreadServe process belongs to. Several environments can co-exist on the
   same host as components will only recognise and communicate with components in the same named environment.
 * ``NAME``: Optional. C++ processes will default to the exe name on the dashboard page, and Python processes will
@@ -100,3 +110,24 @@ made profiles are supplied in the ``%SSROOT%\cfg`` directory. They are...
 * ``baseweb``: launches the same three processes as ``base``, but with the addition of the RealTimeWebServer.
 * ``demo``: same as ``baseweb``, but adds BlackScholesMockMarketData to pump fake market data into the BlackScholes.xls
   example sheet.
+  
+**Windows Service**
+
+The ``launch.cmd`` and ``halt.cmd`` scripts described above are appropriate for manually launching and halting
+SpreadServe. You may also find them convenient for other job control systems like AutoSys. You can also
+configure SpreadServe to run as a Windows Service::
+
+    cd %SSROOT%\py\util
+    ..\..\sh\sspy windows_service.py install
+    
+Then you can use Windows' Services GUI to configure Automatic or Manual startup, and to start and stop the service.
+We recommend you do not use the Local System account to run SpreadServe as a Windows Service, and instead configure
+it to run under Administrator or some other user account. SpreadServe's RTD capabilities, as implemented in SSAddin,
+rely on Registry ClassId and ProgId lookup that access the HKCU hive, and they don't wotk under Local System. Once
+you've created the service you can start and stop SpreadServe at the command line like so::
+
+    sc start SpreadServe
+    sc stop SpreadServe
+    
+To automate SpreadServe start and stop times on a specific host you can use Windows Task Scheduler to invoke
+``sc start SpreadServe`` and ``sc stop SpreadServe``.

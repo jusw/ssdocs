@@ -6,12 +6,12 @@ SpreadServe User Guide
 Once you've installed SpreadServe, you can start and stop it's server processes using a couple of scripts in the sh subdirectory.
 Here's how you would start SpreadServe::
 
-    cd c:\SpreadServe\ss0.4.2\sh
+    cd %SSROOT%\sh
     launch SIT baseweb
 
 And here's how you can halt SpreadServe::
 
-    cd c:\SpreadServe\ss0.4.2\sh
+    cd %SSROOT%\sh
     halt SIT
     
 The launch script takes two parameters: environment name (SIT), and profile (baseweb). SpreadServe processes use the environment
@@ -71,7 +71,7 @@ Try clicking on Swaps under InterestRateDerivatives.xls and you should see this.
 .. image:: img/ss_live3.jpg 
 
 This is just what you'd see in Microsoft Excel if you loaded the same SpreadSheet. Try it and see for yourself.
-You can find the spreadsheet in the SpreadServe directory tree at ``py/http/repo/InterestRateDerivatives.xls``.
+You can find the spreadsheet in the SpreadServe directory tree at ``%SSROOT%\py\http\repo\InterestRateDerivatives.xls``.
 Now in Excel all the cells are editable, both those with formulae, and those holding raw data. You can change the cells
 and see the spreadsheet recalc. In the SpreadServe GUI you can change the raw data cells, but you can't edit the formula cells. 
 In the SpreadServe GUI try clicking on any of the cells that have the dot dot dot underlining. You'll see a pop up that
@@ -89,6 +89,8 @@ with the Load button on the dashboard page...
 The repository table also allows you to upload spreadsheets from your local file system. Hit the browse button to select a spreadsheet.
 When you've OKed the file selection dialog, hit the Upload button to persist the spreadsheet in the repository directory on the server. 
 Next time you hit the load button your spreadsheet will be listed.
+
+.. _Constraints:
 
 **Constraints**
 
@@ -131,7 +133,7 @@ are supplied with SpreadServe: BlackScholesMockMarketData and dblog.
 One of the sample connector programs supplied with SpreadServe injects mock market data into the Black Scholes spreadsheet.
 You can run BlackScholesMockMarketData like this::
 
-    cd c:\SpreadServe\ss0.4.2\py\smpl
+    cd %SSROOT%\py\smpl
     ..\..\sh\sspy black_scholes_mock_mkt_data.py -ENV SIT
     
 Note that you may need to change the path and environment name to match your install. Once BlackScholesMockMarketData is running,
@@ -145,16 +147,16 @@ spreadsheet, and take its data from a real time market data system.
 dblog consists of two processes; one coded in Java, for JDBC DB connectivity, and one in Python, built on SpreadServe's SocketServer
 implementation. Here's how you launch the Python SocketServer part of dblog::
 
-    cd c:\SpreadServe\ss0.4.2\py\sock
+    cd %SSROOT%\py\sock
     ..\..\sh\sspy dblog.py -ENV SIT
     
 And this is how you launch the Java process::
 
-    cd c:\SpreadServe\ss0.4.2\sh
+    cd %SSROOT%\sh
     dbconn
     
 There are several configuration dependencies here, and this will only work out of the box if you have a MySQL install on your SpreadServe host.
-We'll detail the config below. Assuming your config is correct you'll see operations tracked in the database. Try loading the InterestRateDerivates.xls
+We'll detail the config below. Assuming your config is correct you'll see operations tracked in the database. Try loading the InterestRateDerivatives.xls
 spreadsheet, navigate to the TermStructures sheet, and change the Rate cell from 4.4% to 5.4%.
 
 .. image:: img/ss_live4.jpg 
@@ -171,8 +173,8 @@ Notice how that last row in the SSOPS table records the timestamp, the spreadshe
 
 **dblog configuration**
 
-The configuration for the dblog Python SocketServer process is in ``cfg\dbcfg.py``, and the Java process gets its config from cfg\dbconn.props. The Python
-variables in dbcfg.py should match your DB schema, and in dbconn.props the connection details must match your JDBC driver and DB connection. If you're
+The configuration for the dblog Python SocketServer process is in ``%SSROOT%\cfg\dbcfg.py``, and the Java process gets its config from ``%SSROOT%\cfg\dbconn.props``.
+The Python variables in dbcfg.py should match your DB schema, and in dbconn.props the connection details must match your JDBC driver and DB connection. If you're
 not using MySQL, you'll need to add the relevant JDBC driver to the lib directory, and fix the CLASSPATH setting in sh\dbconn.cmd to pick up the jar.
 
 **XLL configuration**
@@ -183,11 +185,11 @@ To add an XLL to your SpreadServe deployment you need to edit ``cfg\xll.txt``. I
     file:///c:/SpreadServe/ss0.4.2/bin/quantlibxl-vc110-mt-s-1_4_0.xll;cdecl;refreshdata
     file:///c:/SpreadServe/ss0.4.2/bin/SSAddin.xll;stdcall;refreshdata
 
-To add your XLL, copy it to the ``ss0.4.2\bin`` directory, then add another line to xll.txt modelled on the the lines that reference xlcall32.dll
+To add your XLL, copy it to the ``%SSROOT%\bin`` directory, then add another line to xll.txt modelled on the the lines that reference xlcall32.dll
 and the QuantLib XLL. Note that each line has three parts separated by semicolons. Firstly the path to the XLL, then the calling convention, and 
-finally an RTD switch. The calling convention should be ``cdecl`` or ``stdcall``; XLLs implemented in C++ will probably be ``cdecl``, and those in
-C# ``stdcall``. However this is not a hard and fast rule, and if you're not sure which calling convention your XLL uses then examine it with
-dumpbin or depends and look at the exported symbols. `This article <http://blogs.msdn.com/b/oldnewthing/archive/2004/01/08/48616.aspx>`_ by the
-immortal Raymond Chen will enable you to determine whether you're seeing symbols using stdcall or cdecl. The third part of the line will be
-`refreshdata` or `norefreshdata`. It should always be set to the former unless you're using an XLL which generates RTD updates and you want to
-disable them.
+finally an RTD switch. The path must be explicit and absolute, you can't use the ``SSROOT`` environment variable. The calling convention should be 
+``cdecl`` or ``stdcall``; XLLs implemented in C++ will probably be ``cdecl``, and those in C# ``stdcall``. However this is not a hard and fast rule, 
+and if you're not sure which calling convention your XLL uses then examine it with dumpbin or depends and look at the exported symbols. 
+`This article <http://blogs.msdn.com/b/oldnewthing/archive/2004/01/08/48616.aspx>`_ by the immortal Raymond Chen will enable you to determine whether 
+you're seeing symbols using stdcall or cdecl. The third part of the line will be `refreshdata` or `norefreshdata`. It should always be set to the former 
+unless you're using an XLL which generates RTD updates and you want to disable them.

@@ -15,6 +15,7 @@ Contents:
    guide
    config
    spec
+   license
    cont1
 
 
