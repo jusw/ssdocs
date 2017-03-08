@@ -23,11 +23,22 @@ SpreadServe is available under two kinds of license: public and offline.
 * Offline
 
   * Chargeable: there's a monthly fee for an offline license.
-  * Silent: SpreadServe does not phone home home to spreadserve.com when running with an offline license key.
+  * Silent: SpreadServe does not phone home to spreadserve.com when running with an offline license key.
   * Time bound: offline license keys can be bought in monthly increments for months and years ahead.
   * Host bound: offline license keys are locked to the MAC address of your host.
   * Tiered: the license charge scales with the feature set as you add XLL, VBA and RTD capabilities.
 
+* Private
+
+  * Chargeable: there's a monthly fee for an private license.
+  * Quiet: SpreadServe does phone home to spreadserve.com when running with an offline license key, but
+    only for the handshake. There are no pings, and no load information is phoned home. Private hosts do
+    not appear on spreadserve.com's dashboard.
+  * Time bound: private license keys can be bought in monthly increments for months and years ahead.
+  * Host flexibility: private license keys are not locked to the MAC address of your host. If you have 
+    ten licenses, then you can run SpreadServe on any ten hosts.
+  * Tiered: the license charge scales with the feature set as you add XLL, VBA and RTD capabilities.  
+  
 **License fee structure**
 
   * Choose one of three currencies: GBP, EUR or USD
@@ -60,3 +71,11 @@ SpreadServe is available under two kinds of license: public and offline.
 
 Bespoke development, configuration, and deployment services are provided on a day rate.
 
+**Beta licensing**
+
+Different license terms apply during SpreadServe's Cloud Beta.
+
+  * Offline license keys are not chargeable. 
+  * Tiered licensing doesn't apply: all beta licenses grant XLL, VBA & RTD.
+  * Beta licenses are not host bound; they work on any server.
+  * Private license keys are not available.
