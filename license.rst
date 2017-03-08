@@ -30,7 +30,7 @@ SpreadServe is available under two kinds of license: public and offline.
 
 * Private
 
-  * Chargeable: there's a monthly fee for an private license.
+  * Chargeable: there's a monthly fee for n private license.
   * Quiet: SpreadServe does phone home to spreadserve.com when running with an offline license key, but
     only for the handshake. There are no pings, and no load information is phoned home. Private hosts do
     not appear on spreadserve.com's dashboard.
