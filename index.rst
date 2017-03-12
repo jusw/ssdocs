@@ -16,6 +16,7 @@ Contents:
    config
    spec
    license
+   ss042c
    cont1
 
 

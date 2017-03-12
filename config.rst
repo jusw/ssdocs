@@ -19,6 +19,12 @@ of interest to users.
 * ``XLL_REG_FILE``: path to the file sseng.exe uses to dump signatures of XLL worksheet functions
   that have been successfully registered.
 
+``dns_host_name.txt``: if this file exists in ``%SSROOT%\cfg`` then SpreadServeEngine will use its contents
+as hostname in handshakes, ping and load messages when phoning home to spreadserve.com. RealTimeWebServer
+looks for dns_host_name.txt too. You should include the port number too if RealTimeWebServer isn't running
+on port 80. In an enterprise environment you might put something like ``mydesktoppc.intranet:8090`` in
+dns_host_name.txt.
+
 **RealTimeWebServer configuration**
 
 The RealTimeWebServer implementation is mostly in one Python module: ``%SSROOT%\py\http\rtwebsvr.py``, which has
@@ -42,6 +48,11 @@ the command line parameters section below for detail on ``AUTH``.
     admin permission can start and stop SpreadServe processes via the dashboard, and upload
     new spreadsheets to the repository via the repository page.
     
+* ``RTWSPort``: defaults to port 8090. Change this to 80 if you want to run RealTimeWebServer 
+  on the default HTTP port. If you do, check no other process is has taken port 80, like IIS. 
+  Also ensure the user ID running the process has enough rights to use port 80.
+* ``ApiKey``: REST API clients should supply this in their Authorization headers. Set to ``None``
+  to shut off API access, or change to your own secret value to control access.
 
 **SpreadServe command line parameters**
 

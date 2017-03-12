@@ -1,0 +1,13 @@
+SpreadServe 0.4.2c notes
+========================
+
+**Install notes**
+
+* Log in to spreadserve.com first: when you start SpreadServe on a new server for the first time, SpreadServeEngine
+  will handshake with spreadserve.com and specify its owner using ``sseng.ini:OWNER`` and its hostname using
+  ``%SSROOT%\cfg\dns_host_name.txt`` if present. You will only be able to set permissions for your new install
+  via spreadserve.com's Permissions page if you've logged in to spreadserve.com previously with an email address
+  matching the one in ``sseng.ini:OWNER``.
+* Port 80 or 8090: RealTimeWebServer defaults to 8090. If you stay with this default you should fix ``%SSROOT%\cfg\dns_host_name.txt``
+  to be ``myhostname:8090``. If you want to run on port 80 make sure no other process like IIS is on 80, that you're running
+  with high enough rights to bind to port 80, and that you fix ``%SSROOT%\cfg\webcfg.py:RTWSPort=80``.
