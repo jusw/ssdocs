@@ -19,7 +19,7 @@ avoid sharing any information about commercially sensitive spreadsheets. In thos
 key, which is free during the SpreadServe beta. The key below is good for any host until 2017-07-31. Past it into
 ``%SSROOT%\cfg\license.txt``.
 
-c3ByZWFkc2VydmUuY29tOjgwLDIwMTcwNzMxLG9mZmxpbmUsRkEtQjEtRUQtREUtQ0EtREUs
+``c3ByZWFkc2VydmUuY29tOjgwLDIwMTcwNzMxLG9mZmxpbmUsRkEtQjEtRUQtREUtQ0EtREUs
 MzYyQTYwRkY3RERCMTlBRTQxQkVBRjUyNTZGOTlGQjYyQjlCRUY4NEE0NDM0QTc3QjcyQTMw
 QzQ4RUREOUM2NDUzNEMyMDE1ODBGRDM5OTU3NjVGMjUwMzM4RUM4NzM0QTY2RUZEOTEwMTAz
-REFGQTU5MzczRTc1RjEyRjIyNjY=
+REFGQTU5MzczRTc1RjEyRjIyNjY=``
