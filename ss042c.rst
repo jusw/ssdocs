@@ -11,3 +11,15 @@ SpreadServe 0.4.2c notes
 * Port 80 or 8090: RealTimeWebServer defaults to 8090. If you stay with this default you should fix ``%SSROOT%\cfg\dns_host_name.txt``
   to be ``myhostname:8090``. If you want to run on port 80 make sure no other process like IIS is on 80, that you're running
   with high enough rights to bind to port 80, and that you fix ``%SSROOT%\cfg\webcfg.py:RTWSPort=80``.
+  
+**Offline license key**
+
+Firewall rules may prevent your SpreadServe install phoning home on port 80 to spreadserve.com. Or you may want to
+avoid sharing any information about commercially sensitive spreadsheets. In those cases you'll need an offline license
+key, which is free during the SpreadServe beta. The key below is good for any host until 2017-07-31. Past it into
+``%SSROOT%\cfg\license.txt``.
+
+c3ByZWFkc2VydmUuY29tOjgwLDIwMTcwNzMxLG9mZmxpbmUsRkEtQjEtRUQtREUtQ0EtREUs
+MzYyQTYwRkY3RERCMTlBRTQxQkVBRjUyNTZGOTlGQjYyQjlCRUY4NEE0NDM0QTc3QjcyQTMw
+QzQ4RUREOUM2NDUzNEMyMDE1ODBGRDM5OTU3NjVGMjUwMzM4RUM4NzM0QTY2RUZEOTEwMTAz
+REFGQTU5MzczRTc1RjEyRjIyNjY=
