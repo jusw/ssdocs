@@ -42,20 +42,17 @@ SpreadServe is available under two kinds of license: public and offline.
 **License fee structure**
 
   * Choose one of three currencies: GBP, EUR or USD
-  * Base
+  * RTD
   
-    * Standard Excel formula set. No XLL, VBA or RTD.
-    * 100 per host per month.
+    * Standard Excel formula set with RTD updates.
     
-  * XLL & VBA
+  * VBA
   
-    * Standard Excel formula set. VBA & XLL. No RTD.
-    * 300 per host per month.
+    * Standard Excel formula set with RTD and VBA macros.
     
-  * XLL, VBA & RTD
+  * XLL
   
-    * Complete feature set.
-    * 400 per host per month.
+    * Complete feature set: all Excel formulas with RTD, VBA & XLL support.
     
   * 3pac: DEV, UAT, PRD
   
@@ -71,6 +68,10 @@ SpreadServe is available under two kinds of license: public and offline.
 
 Bespoke development, configuration, and deployment services are provided on a day rate.
 
+**Consultancy**
+
+Support packages with a preset number of incidents are available.
+
 **Beta licensing**
 
 Different license terms apply during SpreadServe's Cloud Beta.
@@ -79,3 +80,7 @@ Different license terms apply during SpreadServe's Cloud Beta.
   * Tiered licensing doesn't apply: all beta licenses grant XLL, VBA & RTD.
   * Beta licenses are not host bound; they work on any server.
   * Private license keys are not available.
+  
+**Contact**
+
+sales@spreadserve.com
