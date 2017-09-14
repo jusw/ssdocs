@@ -7,7 +7,7 @@ SpreadServe is a Windows Server hosted server product with a web UI.
 
 * OSes: any Windows desktop OS from Windows 7, and any server OS from 2003. SpreadServe has been tested on Windows 7, Windows 8, 
   Windows Server 2008 & 2012.
-* User interface: web UI built with `Angular <http://angularjs.org>`_ 1.5, <http://`Bootstrap <http://getbootstrap.com/>`_ 3.3 and `jQuery <http://jquery.com/>`_ 2.2
+* User interface: web UI built with `Angular <http://angularjs.org>`_ 1.5, `Bootstrap <http://getbootstrap.com/>`_ 3.3 and `jQuery <http://jquery.com/>`_ 2.2
   enabling job control and spreadsheet interaction from a browser.
 * APIs
 
